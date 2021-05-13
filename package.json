@@ -1,8 +1,8 @@
 {
-  "name": "run-ts",
+  "name": "ts-run",
   "version": "0.0.1",
   "description": "",
-  "bin": "./run-ts.mjs",
+  "bin": "./ts-run.mjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

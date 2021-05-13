@@ -1,0 +1,19 @@
+{
+  "name": "run-ts",
+  "version": "0.0.1",
+  "description": "",
+  "bin": "./run-ts.mjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "esbuild": "^0.11.20",
+    "minimist": "^1.2.5"
+  },
+  "devDependencies": {
+    "prettier": "2.3.0"
+  }
+}

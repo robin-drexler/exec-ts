@@ -2,7 +2,7 @@
   "name": "exec-ts",
   "version": "0.0.2",
   "description": "",
-  "bin": "./exec-ts.mjs",
+  "bin": "./exec-ts.js",
   "scripts": {
     "test": "ava"
   },

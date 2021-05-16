@@ -10,13 +10,14 @@ sourceMapSupport.install({
 /**
  * @typedef {Object} Options
  * @property {string} filePath
+ * @property {string[]=} preloadedModules
  * @property {string[]} scriptArgs
  */
 
 /**
  * @param options {Options}
  */
-exports.run = function ({ filePath, scriptArgs }) {
+exports.run = function ({ filePath, scriptArgs, preloadedModules = [] }) {
   /** @type {any} */ (Module)._extensions[".ts"] = (
     /**@type {Module} */ module,
     /**@type {string} */ filename
@@ -41,5 +42,10 @@ exports.run = function ({ filePath, scriptArgs }) {
   };
 
   process.argv = [process.argv[1], filePath, ...scriptArgs];
+
+  for (const preloadedModule of preloadedModules) {
+    require(preloadedModule);
+  }
+
   Module.runMain();
 };

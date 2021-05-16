@@ -10,12 +10,13 @@ sourceMapSupport.install({
 /**
  * @typedef {Object} Options
  * @property {string} filePath
+ * @property {string[]} scriptArgs
  */
 
 /**
  * @param options {Options}
  */
-exports.run = function ({ filePath } = { filePath: "" }) {
+exports.run = function ({ filePath, scriptArgs }) {
   /** @type {any} */ (Module)._extensions[".ts"] = (
     /**@type {Module} */ module,
     /**@type {string} */ filename
@@ -39,6 +40,6 @@ exports.run = function ({ filePath } = { filePath: "" }) {
     return /** @type {any}) */ (Module)._extensions[".js"](module, filename);
   };
 
-  process.argv = [process.argv[1], filePath, ...process.argv.slice(3)];
+  process.argv = [process.argv[1], filePath, ...scriptArgs];
   Module.runMain();
 };

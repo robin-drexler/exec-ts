@@ -4,7 +4,8 @@
   "description": "",
   "bin": "./exec-ts.js",
   "scripts": {
-    "test": "ava **/*test.js"
+    "test": "ava **/*test.js",
+    "type-check": "tsc"
   },
   "keywords": [],
   "author": "",

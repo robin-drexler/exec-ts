@@ -10,7 +10,8 @@
     "types": ["node"],
     "noEmit": true,
     "rootDir": "./",
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "resolveJsonModule": true
   },
   //   "include": ["./"],
   "exclude": ["node_modules", "./node_modules", "./node_modules/*"]

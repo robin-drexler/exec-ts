@@ -29,12 +29,12 @@ exports.run = function ({ filePath, scriptArgs }) {
       sourcemap: "inline",
     });
 
-    const originalCompile = /** @type {any}) */ (module)._compile;
+    const originalCompile = /** @type {any}) */ (module)._compile.bind(module);
     /** @type {any}) */ (module)._compile = function (
       /** @type {Module} */ _,
       /** @type {string} */ filename
     ) {
-      return originalCompile.call(this, result.outputFiles[0].text, filename);
+      return originalCompile(result.outputFiles[0].text, filename);
     };
 
     return /** @type {any}) */ (Module)._extensions[".js"](module, filename);

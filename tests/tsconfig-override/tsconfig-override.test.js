@@ -13,7 +13,7 @@ test("allows to override tsconfig path", async (t) => {
    * We then assert that the log happened which proves that the config override was sucessful.
    */
   const result = await execTS(
-    "./tsconfig-path.fixture.ts --project ./foo/tsconfig.json"
+    "./tsconfig-path.fixture.ts --project ./config/tsconfig.json"
   );
 
   t.regex(result.stdout, /override worked/);

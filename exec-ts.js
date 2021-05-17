@@ -16,8 +16,14 @@ if (!argv._ || argv.length === 0) {
  */
 const preloadedModules = argv.require ? [].concat(argv.require) : [];
 
+/**
+ * @type string=
+ */
+const tsConfigPath = argv.project;
+
 run({
   filePath: resolve(argv._[0]),
   scriptArgs: argv["--"] || [],
   preloadedModules,
+  tsConfigPath,
 });

@@ -1,0 +1,6 @@
+{
+  "compilerOptions": {
+    "jsxFactory": "log",
+    "jsx": "preserve"
+  }
+}

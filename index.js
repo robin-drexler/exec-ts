@@ -1,3 +1,4 @@
+const { resolve } = require("path");
 const { buildSync } = require("esbuild");
 const Module = require("module");
 const sourceMapSupport = require("source-map-support");
@@ -12,22 +13,26 @@ sourceMapSupport.install({
  * @property {string} filePath
  * @property {string[]=} preloadedModules
  * @property {string[]} scriptArgs
+ * @property {string=} tsConfigPath
  */
 
 /**
  * @param options {Options}
  */
-exports.run = function ({ filePath, scriptArgs, preloadedModules = [] }) {
-  /** @type {any} */ (Module)._extensions[".ts"] = (
-    /**@type {Module} */ module,
-    /**@type {string} */ filename
-  ) => {
+exports.run = function ({
+  filePath,
+  scriptArgs,
+  preloadedModules = [],
+  tsConfigPath,
+}) {
+  function handler(/**@type {Module} */ module, /**@type {string} */ filename) {
     const result = buildSync({
       entryPoints: [filename],
       write: false,
       platform: "node",
       format: "cjs",
       sourcemap: "inline",
+      tsconfig: tsConfigPath,
     });
 
     const originalCompile = /** @type {any}) */ (module)._compile.bind(module);
@@ -39,7 +44,10 @@ exports.run = function ({ filePath, scriptArgs, preloadedModules = [] }) {
     };
 
     return /** @type {any}) */ (Module)._extensions[".js"](module, filename);
-  };
+  }
+
+  /** @type {any} */ (Module)._extensions[".ts"] = handler;
+  /** @type {any} */ (Module)._extensions[".tsx"] = handler;
 
   process.argv = [process.argv[1], filePath, ...scriptArgs];
 

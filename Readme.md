@@ -12,6 +12,8 @@ npx exec-ts ./your-ts-file.ts
 
 - `--require module` Preload the specified module at startup before executing the script. Similar to node's [`--require` flag](https://nodejs.org/api/cli.html#cli_r_require_module). Useful in combination with [tsconfig-paths](https://github.com/dividab/tsconfig-paths#readme) to support aliases in your TypeScript scripts. Can be specified multiple times to preload multiple modules. `--require module-a --require module-b`
 
+- `--project ./path/to/tsconfig.json` Specify path to `tsconfig.json` file. Default behavior is to discover the closest `tsconfig.json` file starting from the folder of the executed file traversing up.
+
 ### Passing arguments to scripts
 
 You need to use `--` before passing arguments **to** the TS file.
